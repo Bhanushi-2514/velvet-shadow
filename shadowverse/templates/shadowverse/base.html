@@ -1,0 +1,222 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velvet Shadow</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'shadowverse/css/style.css' %}" />
+  </head>
+
+  <body class="{% block body_class %}{% endblock %}">
+    <!-- HEADER SECTION -->
+    <header>
+      <div class="logo-area">
+        <h1>VELVET SHADOW</h1>
+        <p>Where love is intense and silence keeps secrets.</p>
+      </div>
+
+      <nav>
+        <a href="/">Home</a>
+        <a href="#">Tropes</a>
+        <a href="#">Analysis</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">{% block content %} {% endblock %}</main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-divider"></div>
+
+      <div class="footer-content">
+        <p class="footer-line">Some stories stay.</p>
+        <p class="footer-line">Some scars don’t fade.</p>
+
+        <h2 class="footer-brand">VELVET SHADOW</h2>
+
+        <p class="footer-tag">Curated in shadow.</p>
+      </div>
+    </footer>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* =========================================
+     INTRO FADE + STORY ENTRANCE
+  ========================================= */
+
+  const overlay = document.getElementById("storyIntro");
+  const enterBtn = document.getElementById("enterStoryBtn");
+  const storyWrapper = document.querySelector(".story-wrapper");
+
+  if (overlay && enterBtn) {
+    document.body.style.overflow = "hidden";
+
+    enterBtn.addEventListener("click", function () {
+      overlay.style.opacity = "0";
+
+      setTimeout(() => {
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+
+        if (storyWrapper) {
+          storyWrapper.classList.add("story-visible");
+        }
+      }, 1200);
+    });
+
+  } else {
+    if (storyWrapper) {
+      storyWrapper.classList.add("story-visible");
+    }
+  }
+
+  /* =========================================
+     STORY SCROLL REVEAL
+  ========================================= */
+
+  const lines = document.querySelectorAll(".story-line");
+
+  if (lines.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+          entry.target.classList.add("active");
+        }
+      });
+    }, { threshold: 0.4 });
+
+    lines.forEach((line) => observer.observe(line));
+  }
+
+  /* =========================================
+     REFLECT MODAL LOGIC
+  ========================================= */
+
+  const reflectBtn = document.querySelector(".reflect-btn");
+  const reflectModal = document.getElementById("reflectModal");
+  const reflectCancelBtn = document.getElementById("reflectCancel");
+  const reflectSubmitBtn = document.getElementById("reflectSubmit");
+  const reflectTextArea = document.getElementById("reflectText");
+
+  if (reflectBtn && reflectModal) {
+
+    reflectBtn.addEventListener("click", function () {
+      reflectModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+
+    if (reflectCancelBtn) {
+      reflectCancelBtn.addEventListener("click", function () {
+        reflectModal.classList.remove("active");
+        document.body.style.overflow = "auto";
+      });
+    }
+
+    if (reflectSubmitBtn) {
+      reflectSubmitBtn.addEventListener("click", function () {
+        const value = reflectTextArea.value.trim();
+        if (value !== "") {
+          localStorage.setItem("velvet_reflection", value);
+        }
+      });
+    }
+  }
+
+  /* =========================================
+     MYSTIC POLL LOGIC
+  ========================================= */
+
+  const pollOptions = document.querySelectorAll(".mystic-option");
+  const hiddenInput = document.getElementById("selectedTrope");
+  const pollSubmitBtn = document.querySelector(".mystic-submit");
+  const pollSection = document.querySelector(".chamber-poll");
+
+  if (pollOptions.length > 0 && hiddenInput && pollSubmitBtn) {
+
+    pollOptions.forEach((option) => {
+      option.addEventListener("click", function () {
+
+        pollOptions.forEach((o) => {
+          o.classList.remove("selected");
+          o.classList.add("faded");
+        });
+
+        this.classList.remove("faded");
+        this.classList.add("selected");
+
+        hiddenInput.value = this.dataset.value;
+
+        pollSubmitBtn.classList.add("active");
+
+        if (pollSection) {
+          pollSection.classList.add("shimmer-wave");
+          setTimeout(() => {
+            pollSection.classList.remove("shimmer-wave");
+          }, 1000);
+        }
+
+        createSparkle(this);
+      });
+    });
+
+    function createSparkle(element) {
+      for (let i = 0; i < 3; i++) {
+        const sparkle = document.createElement("span");
+        sparkle.classList.add("sparkle");
+        sparkle.style.left = Math.random() * 30 - 15 + "px";
+        element.appendChild(sparkle);
+
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    }
+  }
+
+  /* =========================================
+     CHAMBER CLOSING REVEAL
+  ========================================= */
+
+  const closing = document.querySelector(".chamber-closing");
+
+  if (closing) {
+    const closingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          closing.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.4 });
+
+    closingObserver.observe(closing);
+  }
+
+  /* =========================================
+     🎵 PLAY SOUND ONLY AFTER POLL SUBMISSION
+     (When mystic-noted exists)
+  ========================================= */
+
+  const velvetSound = document.getElementById("velvetSound");
+  const notedText = document.querySelector(".mystic-noted");
+
+  if (velvetSound && notedText) {
+    setTimeout(() => {
+      velvetSound.volume = 0.5;   // keep soft
+      velvetSound.play().catch(() => {});
+    }, 400);
+  }
+
+});
+</script>
+      
+  </body>
+</html>

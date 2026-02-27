@@ -1,0 +1,105 @@
+{% extends "shadowverse/base.html" %}
+
+{% block body_class %}
+story-theme {{ accent }}
+{% endblock %}
+
+{% block content %}
+
+<!-- INTRO OVERLAY -->
+
+<div class="story-intro-overlay" id="storyIntro">
+    <div class="intro-content">
+       <p class="intro-line">
+         This page was never meant to be opened.
+        </p>
+        <p class="intro-sub">
+          But since you’re here… read carefully.
+        </p>
+        <button class="intro-enter-btn" id="enterStoryBtn">
+           Unlock the Secret
+        </button>
+    </div>
+</div>
+<a href="/" class="back-link">← Back</a>
+
+<div class="story-wrapper">
+
+    <!-- Trope Label -->
+    <p class="trope-label">
+        {{ trope_name }}
+    </p>
+
+    <!-- Story Title -->
+    <h1 class="story-title">
+        {{ story.title }}
+    </h1>
+
+    <!-- Story Body -->
+    <div class="story-body">
+        {% for line in story.content.splitlines %}
+            {% if line %}
+                <p class="story-line">{{ line }}</p>
+            {% else %}
+                <div class="story-gap"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Final Question -->
+    <div class="final-question">
+        {{ final_question }}
+    </div>
+
+    <!-- Reflect Button -->
+    <button class="reflect-btn">
+        Reflect
+    </button>
+
+</div>
+
+
+<!-- REFLECT MODAL (Outside story-wrapper) -->
+<div class="reflect-modal" id="reflectModal">
+
+    <div class="reflect-modal-content">
+
+        <!-- 🔥 FORM START -->
+        <form method="POST">
+            {% csrf_token %}
+
+            <h3 class="reflect-title">
+                Write what this page made you feel.
+            </h3>
+
+            <p class="reflect-soft-question">
+                {{ final_question }}
+            </p>
+
+            <textarea 
+                name="reflection_text"
+                id="reflectText"
+                placeholder="What did this make you feel?"
+            ></textarea>
+
+            <div class="reflect-actions">
+
+             <button type="submit" name="cancel_action" class="reflect-cancel">
+                Step Back
+             </button>
+
+               <button type="submit" class="reflect-submit">
+                Keep it in Shadow
+               </button>
+
+            </div>
+
+        </form>
+        <!-- 🔥 FORM END -->
+
+    </div>
+
+</div>
+
+
+{% endblock %}

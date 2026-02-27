@@ -1,0 +1,138 @@
+{% extends "shadowverse/base.html" %}
+{% load static %}
+
+{% block body_class %}chamber-theme{% endblock %}
+
+{% block content %}
+<div class="chamber-back">
+    <a href="{% url 'index' %}">← Return to Velvet Shadow</a>
+</div>
+
+<div class="shadow-chamber">
+
+    <!-- 🌿 TOP SECTION -->
+    <section class="chamber-top">
+        <div class="chamber-opening">
+            <h1>
+                Some confessions are not meant to fade.<br>
+                They rest… in velvet silence.
+            </h1>
+
+            {% if reflection %}
+                <p class="chamber-trope-line">
+                    You lingered in {{ reflection.trope_name }} for a while…
+                </p>
+            {% endif %}
+
+            <div class="divider-line"></div>
+        </div>
+    </section>
+
+    <!-- 🌿 REFLECTION SECTION -->
+    <section class="chamber-reflection">
+        {% if reflection %}
+            <div class="reflection-card">
+                <p class="reflection-label">
+                    WHAT YOU WROTE…
+                </p>
+
+                <div class="reflection-text">
+                    {{ reflection.reflection_text }}
+                </div>
+
+                <p class="reflection-time">
+                    {{ reflection.created_at }}
+                </p>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>The chamber is quiet tonight.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    {% if observation %}
+    <section class="chamber-observed">
+        <h2>The Chamber Observed…</h2>
+        <div class="observed-divider"></div>
+
+        <div class="observed-card">
+            <p class="observed-text {% if observation_type == 'soft' %}soft-observation{% endif %}">
+                {{ observation|linebreaksbr }}
+            </p>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- 🌫 POLL SECTION -->
+    <section class="chamber-poll">
+
+        <h3>
+            If the diary opened again…<br>
+            where would your hand turn first?
+        </h3>
+
+        {% if not poll_submitted %}
+
+        <form method="POST" id="mysticPoll">
+            {% csrf_token %}
+
+            <div class="mystic-options">
+                <div class="mystic-option" data-value="Mafia Romance">
+                    Mafia Romance
+                </div>
+
+                <div class="mystic-option" data-value="Office Romance">
+                    Office Romance
+                </div>
+
+                <div class="mystic-option" data-value="Enemies to Lovers">
+                    Enemies to Lovers
+                </div>
+
+                <div class="mystic-option" data-value="Hidden Vows">
+                    Hidden Vows
+                </div>
+            </div>
+
+            <input type="hidden" name="selected_trope" id="selectedTrope">
+
+            <button type="submit" class="mystic-submit">
+                Leave a Mark
+            </button>
+
+        </form>
+
+        {% else %}
+            <div class="mystic-noted">
+                "Some pages do not close. They absorb.”
+            </div>
+        {% endif %}
+
+    </section>
+
+    <!-- 🌿 FINAL CLOSING -->
+    <section class="chamber-closing">
+        <div class="closing-text">
+            <p class="closing-main">
+                VelvetShadow does not end here.<br>
+                It only rests… until you return.
+            </p>
+
+            <p class="closing-poetry">
+                Jo likha gaya tha,<br>
+                wo mita nahi.<br>
+                Bas khamoshi ke pannon mein<br>
+                chup sa thahar gaya.
+            </p>
+        </div>
+    </section>
+
+</div>
+
+<!-- 🎧 Velvet Poll Sound (Plays After Poll Submission Only) -->
+<audio id="velvetSound" preload="auto">
+    <source src="{% static 'shadowverse/audio/velvet_end.mp3' %}" type="audio/mpeg">
+</audio>
+
+{% endblock %}

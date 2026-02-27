@@ -1,0 +1,67 @@
+{% extends 'shadowverse/base.html' %}
+
+{% block body_class %}home-theme{% endblock %}
+
+{% block content %}
+
+<!-- Bridge Section -->
+<section class="bridge-section">
+    <p class="bridge-line">Four stories. One choice.</p>
+</section>
+
+<!-- Trope Grid Section -->
+<section class="trope-section">
+    <div class="trope-container">
+
+        <!-- Card 1 -->
+        <div class="trope-card">
+            <h3 class="trope-title">MAFIA ROMANCE</h3>
+            <p class="trope-text">
+                “Woh dangerous hai… par pata nahi kyun uske saath khud ko safe feel hota hai.”
+            </p>
+            <div class="card-divider"></div>
+            <a href="{% url 'story' 'mafia' %}" class="trope-button">
+                Enter the Underworld
+            </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="trope-card">
+            <h3 class="trope-title">OFFICE ROMANCE</h3>
+            <p class="trope-text">
+                “Office mein sirf meetings nahi hoti… kuch nazrein bhi secret rehti hain.”
+            </p>
+            <div class="card-divider"></div>
+            <a href="{% url 'story' 'office' %}" class="trope-button">
+                Keep It Confidential
+            </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="trope-card">
+            <h3 class="trope-title">ENEMIES TO LOVERS</h3>
+            <p class="trope-text">
+                “Har baar ladte hain… par har baar door bhi nahi ja paate.”
+            </p>
+            <div class="card-divider"></div>
+            <a href="{% url 'story' 'enemies' %}" class="trope-button">
+                Cross the Line
+            </a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="trope-card">
+            <h3 class="trope-title">HIDDEN VOWS</h3>
+            <p class="trope-text">
+                “Sab ke liye woh sirf professor hai… par mere liye? Kuch aur.”
+            </p>
+            <div class="card-divider"></div>
+            <a href="{% url 'story' 'hidden' %}" class="trope-button">
+                Reveal the Truth
+            </a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,1383 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* add  */
+html,
+body {
+  height: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* body+background */
+body {
+  font-family: "Playfair Display", serif;
+  color: #f5ebe0;
+
+  display: flex;
+  flex-direction: column;
+
+  background-image:
+    linear-gradient(rgba(18, 18, 18, 0.28), rgba(18, 18, 18, 0.28)),
+    url("../images/background.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* header layout */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 60px; /* was 35px 70px */
+  background: rgba(18, 18, 18, 0.18); /* lighter */
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(245, 235, 224, 0.05);
+}
+/* logo */
+
+.logo-area h1 {
+  font-family: "Cinzel", serif;
+  font-size: 26px;
+  letter-spacing: 4px;
+  transition: 0.3s ease;
+}
+
+.logo-area h1:hover {
+  color: #b5838d;
+  text-shadow: 0 0 8px rgba(181, 131, 141, 0.4);
+  cursor: pointer;
+}
+
+.logo-area p {
+  font-style: italic;
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 6px;
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+  display: flex;
+  gap: 35px;
+}
+
+/* Base link style */
+nav a {
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: #f5ebe0;
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  transition: all 0.4s ease;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+}
+
+/* Soft hover color */
+nav a:hover {
+  opacity: 1;
+  color: #ffffff;
+}
+
+/* Velvet shimmer layer */
+nav a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -140%;
+  width: 140%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 35%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0.06) 65%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  filter: blur(0.5px);
+}
+
+/* Animate shimmer on hover */
+/* Animate shimmer on hover */
+nav a:hover::before {
+  animation: velvetShimmer 1.4s ease forwards;
+}
+
+@keyframes velvetShimmer {
+  from {
+    left: -140%;
+  }
+  to {
+    left: 140%;
+  }
+}
+
+/* ================= BRIDGE LINE ================= */
+
+.bridge-section {
+  text-align: center;
+  padding: 100px 20px 60px 20px; /* top space important */
+}
+
+.bridge-line {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  letter-spacing: 4px;
+  opacity: 0.85;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* ================= TROPE SECTION ================= */
+
+.trope-section {
+  padding: 40px 20px 100px 20px;
+}
+
+.trope-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/* card base style */
+.trope-card {
+  background: linear-gradient(145deg, #1c1c1c, #241b24);
+  padding: 50px;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+/* card typography */
+.trope-title {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.trope-text {
+  font-style: italic;
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+/* divider */
+.card-divider {
+  height: 1px;
+  width: 60px;
+  background: #a4161a;
+  margin: 0 auto 25px auto;
+  opacity: 0.6;
+}
+
+/* button */
+.trope-button {
+  display: inline-block;
+  text-decoration: none;
+  color: #f5ebe0;
+  border: 1px solid #a4161a;
+  padding: 8px 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+}
+
+.trope-button:hover {
+  background: #a4161a;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(164, 22, 26, 0.5);
+}
+
+/* hover card effect */
+.trope-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(164, 22, 26, 0.25);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  background: #0e0e0e;
+  padding: 22px 20px; /* 40 se bhi kam */
+  text-align: center;
+}
+
+.footer-divider {
+  height: 1px;
+  width: 100%;
+  background: #a4161a;
+  opacity: 0.35; /* softer */
+  margin-bottom: 18px;
+}
+
+.footer-line {
+  font-style: italic;
+  font-size: 13px;
+  opacity: 0.55;
+  margin-bottom: 4px;
+}
+
+.footer-brand {
+  font-family: "Cinzel", serif;
+  font-size: 18px; /* thoda small */
+  letter-spacing: 5px;
+  margin: 10px 0 4px 0;
+}
+
+.footer-tag {
+  font-size: 11px;
+  opacity: 0.45;
+}
+
+/* =========================================================
+   STORY PAGE BASE (No image, deep immersion)
+========================================================= */
+
+body.story-theme {
+  background-image: none !important;
+  background-color: #121212 !important;
+  position: relative;
+}
+
+/* Soft vignette */
+body.story-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+/* Darker header for immersion */
+body.story-theme header {
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: none;
+}
+
+body.story-theme footer {
+  background: #0e0e0e;
+}
+
+/* ==========================================
+   STORY INTRO OVERLAY (VELVET DIARY MODE)
+========================================== */
+
+.story-intro-overlay {
+  position: fixed;
+  inset: 0;
+
+  /* Dark diary gradient */
+  background: radial-gradient(
+    circle at center,
+    #181818 0%,
+    #121212 60%,
+    #0d0d0d 100%
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  transition: opacity 1.2s ease;
+}
+
+/* Soft vignette breathing */
+.story-intro-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  pointer-events: none;
+  animation: slowPulse 6s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes slowPulse {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Floating dust particles */
+.story-intro-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  opacity: 0.25;
+  animation: dustMove 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dustMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 200px 200px;
+  }
+}
+
+/* ==========================================
+   INTRO CONTENT
+========================================== */
+
+.intro-content {
+  position: relative;
+  max-width: 500px;
+  padding: 20px;
+}
+
+/* Text cinematic entrance */
+.intro-line,
+.intro-sub,
+.intro-enter-btn {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: introFadeUp 1.6s ease forwards;
+}
+
+.intro-line {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  animation-delay: 0.3s;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+}
+
+.intro-sub {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  font-style: italic;
+  animation-delay: 0.9s;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.intro-enter-btn {
+  animation-delay: 1.4s;
+}
+
+@keyframes introFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Letter breathing effect */
+.intro-line {
+  animation:
+    introFadeUp 1.6s ease forwards,
+    letterBreath 4s ease-in-out infinite alternate;
+}
+
+@keyframes letterBreath {
+  from {
+    letter-spacing: 3px;
+  }
+  to {
+    letter-spacing: 5px;
+  }
+}
+
+/* ==========================================
+   BUTTON EFFECT
+========================================== */
+
+.intro-enter-btn {
+  padding: 8px 24px;
+  border: 1px solid rgba(245, 235, 224, 0.6);
+  background: transparent;
+  color: #f5ebe0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  transition:
+    0.4s ease,
+    transform 0.3s ease;
+}
+
+/* Soft glow pulse layer */
+.intro-enter-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.15),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.intro-enter-btn:hover {
+  background: rgba(245, 235, 224, 0.1);
+  box-shadow: 0 0 20px rgba(245, 235, 224, 0.15);
+  transform: translateY(-2px);
+}
+
+.intro-enter-btn:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   STORY WRAPPER — PREMIUM SUBTLE ENTRANCE
+========================================================= */
+
+.story-wrapper {
+  max-width: 620px;
+  margin: 20vh auto 140px auto;
+  padding: 0 20px;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 1.6s ease,
+    transform 1.6s ease;
+}
+
+/* Activated after intro */
+.story-wrapper.story-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* VERY subtle inner glow (no overflow outside wrapper) */
+.story-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(255, 255, 255, 0.025) 0%,
+    rgba(0, 0, 0, 0.25) 70%
+  );
+
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  border-radius: 8px;
+}
+
+/* Activate glow */
+.story-wrapper.story-visible::before {
+  opacity: 1;
+}
+
+/* Bottom fade effect */
+.story-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to top,
+    rgba(18, 18, 18, 0.9) 30%,
+    transparent 100%
+  );
+}
+
+/* =========================================================
+   BACK LINK
+========================================================= */
+
+.back-link {
+  position: absolute;
+  top: 120px;
+  left: 40px;
+  font-size: 13px;
+  opacity: 0.45;
+  text-decoration: none;
+  color: #f5ebe0;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.back-link:hover {
+  opacity: 0.85;
+}
+
+/* =========================================================
+   TROPE LABEL
+========================================================= */
+
+.trope-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   STORY TITLE
+========================================================= */
+
+.story-title {
+  font-family: "Cinzel", serif;
+  font-size: 36px;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* =========================================================
+   STORY BODY (Scroll Reveal Ready)
+========================================================= */
+
+.story-line {
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+  line-height: 2.1;
+  color: #f1e8dc;
+  margin-bottom: 14px;
+
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+/* When visible */
+.story-line.active {
+  opacity: 1;
+  transform: translateY(0);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================
+   FINAL QUESTION
+========================================================= */
+
+.final-question {
+  margin-top: 80px;
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+  opacity: 0.95;
+  transition: 0.3s ease;
+}
+
+/* =========================================================
+   REFLECT BUTTON
+========================================================= */
+
+/* =========================================================
+   REFLECT BUTTON (FIXED & VISIBLE)
+========================================================= */
+
+.reflect-btn {
+  display: block;
+  margin: 80px auto 0 auto;
+  padding: 10px 28px;
+  border: 1px solid #f5ebe0; /* default visible border */
+  background: transparent;
+  color: #f5ebe0; /* default visible text */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  z-index: 5; /* prevents fade overlay overlap */
+}
+
+/* =========================================================
+   REFLECT MODAL – Velvet Diary Forbidden Edition
+========================================================= */
+
+.reflect-modal {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.9) 100%
+  );
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 10000;
+}
+
+.reflect-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Modal Card */
+.reflect-modal-content {
+  position: relative;
+  background: linear-gradient(145deg, #1a1a1a, #111111);
+  padding: 50px 45px;
+  width: 90%;
+  max-width: 540px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 
+    0 0 60px rgba(0,0,0,0.8),
+    0 0 120px rgba(139,30,30,0.05);
+  text-align: center;
+  transform: translateY(40px) scale(0.98);
+  transition: transform 0.6s ease;
+}
+
+.reflect-modal.active .reflect-modal-content {
+  transform: translateY(0) scale(1);
+}
+
+/* Subtle velvet texture illusion */
+.reflect-modal-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255,255,255,0.03),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Title */
+.reflect-title {
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
+
+/* Soft echo question */
+.reflect-soft-question {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 15px;
+  opacity: 0.55;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Textarea */
+#reflectText {
+  width: 100%;
+  min-height: 150px;
+  background: #0f0f0f;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #f5ebe0;
+  padding: 18px;
+  resize: none;
+  border-radius: 10px;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  transition: all 0.4s ease;
+}
+
+#reflectText:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.25);
+  box-shadow: 
+    0 0 25px rgba(139,30,30,0.15);
+}
+
+/* Button Row */
+.reflect-actions {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Buttons Base */
+.reflect-cancel,
+.reflect-submit {
+  padding: 9px 28px;
+  background: transparent;
+  border-radius: 8px;
+  letter-spacing: 2px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+/* Cancel */
+.reflect-cancel {
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+}
+
+.reflect-cancel:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: #ffffff;
+}
+
+/* Submit */
+.reflect-submit {
+  border: 1px solid rgba(245,235,224,0.6);
+  color: #f5ebe0;
+}
+
+.reflect-submit:hover {
+  background: rgba(245,235,224,0.08);
+  box-shadow: 
+    0 0 30px rgba(139,30,30,0.25);
+  transform: translateY(-3px);
+}
+
+.shadow-confirmation {
+  margin-top: 15px;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 14px;
+  opacity: 0;
+  color: rgba(245,235,224,0.75);
+  animation: shadowFade 2s ease forwards;
+}
+
+@keyframes shadowFade {
+  0% { opacity: 0; transform: translateY(8px); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
+/* =========================================================
+   SHADOW CHAMBER — DREAM PRESENCE FINAL VERSION
+========================================================= */
+
+/* ===== THEME OVERRIDE ===== */
+
+body.chamber-theme {
+  background: #e6ddd2;
+  color: #3a3432;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Header */
+body.chamber-theme header {
+  background: #e6ddd2;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Nav */
+body.chamber-theme nav a {
+  color: #3a3432;
+}
+
+body.chamber-theme nav a:hover {
+  color: #6b3442;
+}
+
+/* Footer */
+body.chamber-theme footer {
+  background: #e6ddd2;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ===== BACK LINK ===== */
+
+.chamber-back {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.chamber-back a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #7a3b4d;
+  transition: opacity 0.3s ease;
+}
+
+.chamber-back a:hover {
+  opacity: 0.6;
+}
+
+/* ===== PAGE WRAPPER ===== */
+
+.shadow-chamber {
+  min-height: 100vh;
+  padding: 80px 20px 100px;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== MORNING LIGHT GLOW ===== */
+
+.shadow-chamber::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+      circle at 50% 0%,
+      rgba(255,255,255,0.25),
+      transparent 65%
+  );
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* ===== FLOATING DUST EFFECT ===== */
+
+.shadow-chamber::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(rgba(120, 80, 60, 0.07) 1px, transparent 1px);
+
+  background-size: 120px 120px;
+
+  animation: floatDust 90s linear infinite;
+  opacity: 0.5;
+
+  z-index: -1;
+}
+
+@keyframes floatDust {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-300px);
+  }
+}
+
+/* ===== OPENING ===== */
+
+.chamber-opening {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 90px;
+}
+
+.chamber-opening h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0 auto;
+}
+
+.chamber-trope-line {
+  font-size: 15px;
+  color: #6b3442;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+/* Golden divider */
+.divider-line {
+  width: 50px;
+  height: 1px;
+  background: #c2a96a;
+  opacity: 0.5;
+  margin: 24px auto 0;
+}
+
+/* ===== REFLECTION SECTION ===== */
+
+.chamber-reflection {
+  max-width: 650px;
+  margin: 80px auto;
+}
+
+.reflection-card {
+  background: #f3ebe3;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  padding: 42px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.reflection-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  color: #6b3442;
+}
+
+.reflection-text {
+  font-size: 18px;
+  line-height: 1.9;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+
+.reflection-time {
+  font-size: 13px;
+  color: #6b3442;
+  opacity: 0.75;
+}
+
+.empty-state {
+  text-align: center;
+  font-style: italic;
+  margin: 80px 0;
+  color: #6b3442;
+  opacity: 0.8;
+}
+
+/* ===== OBSERVED SECTION ===== */
+
+.chamber-observed {
+  max-width: 650px;
+  margin: 100px auto 60px;
+  padding: 0 20px;
+}
+
+.observed-divider {
+  width: 80px;
+  height: 2px;
+  margin: 18px auto 40px;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      #c2a96a,
+      transparent
+  );
+  position: relative;
+}
+
+.observed-divider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(194, 169, 106, 0.6),
+      transparent
+  );
+  filter: blur(6px);
+  opacity: 0.8;
+}
+
+/* Observed Card */
+.observed-card {
+  background: #f3ebe3;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInSoft 1s ease forwards;
+}
+
+.observed-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+}
+
+.observed-text {
+  font-size: 16px;
+  line-height: 1.9;
+  font-style: italic;
+  color: #2a2626;
+}
+
+.soft-observation {
+  color: #7a3b4d;
+  opacity: 0.9;
+}
+
+/* Fade animation */
+@keyframes fadeInSoft {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   🌑 MYSTIC POLL SECTION — VELVET MODE
+========================================= */
+
+.chamber-poll {
+  text-align: center;
+  margin-top: 120px;
+  padding: 20px;
+  position: relative;        /* Required for shimmer-wave */
+  overflow: hidden;
+}
+
+.chamber-poll h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+/* =========================================
+   🌫 GOLDEN PULSE ACROSS WHOLE SECTION
+========================================= */
+
+.chamber-poll.shimmer-wave::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at center,
+      rgba(194,169,106,0.25),
+      transparent 65%
+  );
+  animation: pollWave 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes pollWave {
+  from {
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+/* =========================================
+   🌬 FLOATING OPTIONS (SOFT + OUT OF SYNC)
+========================================= */
+
+.mystic-options {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.mystic-option {
+  font-size: 18px;
+  letter-spacing: 1px;
+  opacity: 0.6;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease;
+  animation: floatBreath 9s ease-in-out infinite;
+}
+
+/* Different delays for natural floating */
+.mystic-option:nth-child(1) { animation-delay: 0s; }
+.mystic-option:nth-child(2) { animation-delay: 1.5s; }
+.mystic-option:nth-child(3) { animation-delay: 3s; }
+.mystic-option:nth-child(4) { animation-delay: 4.5s; }
+
+@keyframes floatBreath {
+  0%   { transform: translateY(0px); }
+  25%  { transform: translateY(-6px); }
+  50%  { transform: translateY(-12px); }
+  75%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Hover glow */
+.mystic-option:hover {
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(194,169,106,0.4);
+}
+
+/* Selected option */
+.mystic-option.selected {
+  opacity: 1;
+  color: #6b3442;
+  text-shadow:
+      0 0 8px rgba(194,169,106,0.5),
+      0 0 18px rgba(194,169,106,0.4);
+}
+
+/* Fade other options */
+.mystic-option.faded {
+  opacity: 0.25;
+}
+
+/* =========================================
+   🌟 SOFT AURA BEHIND SELECTED
+========================================= */
+
+.mystic-option.selected::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  background: radial-gradient(
+      circle,
+      rgba(194,169,106,0.35) 0%,
+      rgba(194,169,106,0.18) 40%,
+      transparent 75%
+  );
+  border-radius: 50px;
+  z-index: -1;
+  animation: softAura 1.2s ease-out forwards;
+}
+
+@keyframes softAura {
+  from { opacity: 0.7; transform: scale(0.9); }
+  to   { opacity: 0; transform: scale(1.2); }
+}
+
+/* =========================================
+   ✨ SPARKLES
+========================================= */
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #c2a96a;
+  border-radius: 50%;
+  animation: sparkleUp 1s ease-out forwards;
+}
+
+@keyframes sparkleUp {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-25px);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   🌑 SUBMIT BUTTON (APPEARS AFTER SELECT)
+========================================= */
+
+.mystic-submit {
+  background: transparent;
+  border: 1px solid #c2a96a;
+  color: #6b3442;
+  padding: 10px 28px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.mystic-submit.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mystic-submit:hover {
+  background: #c2a96a;
+  color: white;
+}
+
+/* =========================================
+   🌙 NOTED MESSAGE
+========================================= */
+
+.mystic-noted {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #6b3442;
+  opacity: 0;
+  letter-spacing: 1px;
+  animation: velvetFade 1.5s ease forwards;
+}
+
+@keyframes velvetFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    letter-spacing: 0px;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+    letter-spacing: 2px;
+  }
+}
+/* ===== CLOSING SECTION ===== */
+
+.chamber-closing {
+  text-align: center;
+  margin-top: 160px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.6s ease;
+}
+
+.chamber-closing.visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closing-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  line-height: 1.6;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+.closing-poetry {
+  font-style: italic;
+  font-size: 15px;
+  line-height: 2;
+  color: #6b3442;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   ACCENT VARIATIONS (Balanced & Premium)
+========================================================= */
+
+/* ---------------- MAFIA ---------------- */
+
+body.story-theme.mafia .trope-label,
+body.story-theme.mafia .final-question {
+  color: #8b1e1e; /* wine red */
+}
+
+body.story-theme.mafia .final-question {
+  text-shadow: 0 0 14px rgba(139, 30, 30, 0.45);
+}
+
+body.story-theme.mafia .reflect-btn {
+  border-color: #8b1e1e;
+  color: #8b1e1e;
+}
+
+body.story-theme.mafia .reflect-btn:hover {
+  background: #8b1e1e;
+  color: #ffffff;
+}
+
+/* ---------------- OFFICE ---------------- */
+
+body.story-theme.office .trope-label,
+body.story-theme.office .final-question {
+  color: #e0aaff;
+}
+
+body.story-theme.office .final-question {
+  text-shadow: 0 0 18px rgba(224, 170, 255, 0.5);
+}
+
+body.story-theme.office .reflect-btn {
+  border-color: #e0aaff;
+  color: #e0aaff;
+}
+
+body.story-theme.office .reflect-btn:hover {
+  background: #e0aaff;
+  color: #000;
+}
+
+/* ---------------- ENEMIES ---------------- */
+
+body.story-theme.enemies .trope-label,
+body.story-theme.enemies .final-question {
+  color: #a4161a; /* sharper crimson */
+}
+
+body.story-theme.enemies .final-question {
+  text-shadow: 0 0 18px rgba(164, 22, 26, 0.5);
+}
+
+body.story-theme.enemies .reflect-btn {
+  border-color: #a4161a;
+  color: #a4161a;
+}
+
+body.story-theme.enemies .reflect-btn:hover {
+  background: #a4161a;
+  color: #ffffff;
+}
+
+/* ---------------- HIDDEN ---------------- */
+
+body.story-theme.hidden .trope-label,
+body.story-theme.hidden .final-question {
+  color: #9d4edd;
+}
+
+body.story-theme.hidden .final-question {
+  text-shadow: 0 0 18px rgba(157, 78, 221, 0.5);
+}
+
+body.story-theme.hidden .reflect-btn {
+  border-color: #9d4edd;
+  color: #9d4edd;
+}
+
+body.story-theme.hidden .reflect-btn:hover {
+  background: #9d4edd;
+  color: #ffffff;
+}
