@@ -9,10 +9,18 @@ Users explore emotional romance tropes, read poetic story pages, write reflectio
 
 ---
 
-## 🌍 Live Preview
+## 🌍 Live Experience
 
-✨ Coming Soon  
-(Deployment in progress)
+Velvet Shadow is now live.
+
+Enter the atmosphere:
+
+🔗 https://velvet-shadow.onrender.com
+
+Some stories stay.  
+Some scars don’t fade.
+
+
 
 ---
 
