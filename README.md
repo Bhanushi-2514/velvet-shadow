@@ -52,4 +52,20 @@ Users explore emotional romance tropes, read poetic story pages, write reflectio
 
 ---
 
+```
 ## 📂 Project Structure
+velvet-shadow/
+│
+├── VelvetShadow/        # Django project settings
+├── shadowverse/         # Main app (views, models, templates)
+│   ├── models.py        # Reflection & chamber logic
+│   ├── views.py         # Page rendering & poll handling
+│   ├── templates/       # Home, Story, Chamber pages
+│   └── static/          # CSS, images, audio files
+│
+├── assets/              # GitHub preview screenshots
+├── manage.py
+└── README.md
+```
+
+
