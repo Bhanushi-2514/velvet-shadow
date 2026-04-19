@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'shadowverse/css/style.css' %} />
+    <link rel="stylesheet" href="{% static 'shadowverse/css/style.css' %} " />
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
@@ -61,7 +61,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const typeElement = document.getElementById("type-text");
 
-if (typeElement) {
+// 🔥 detect live (Render) vs local
+const isLive = window.location.hostname.includes("onrender.com");
+
+if (!isLive && typeElement) {
+
+  // 🔥 clear static text for typing
+  typeElement.textContent = "";
+
 
   const lines = [
     "FOUR STORIES. ONE CHOICE.",
@@ -81,7 +88,7 @@ if (typeElement) {
 
       let char = lines[lineIndex].charAt(charIndex - 1);
 
-      // slightly faster typing for live
+      // smooth typing
       let delay = Math.random() * 60 + 30;
 
       if (char === " ") delay = 100;
@@ -91,9 +98,10 @@ if (typeElement) {
 
     } else {
 
+      // 💓 heartbeat
       typeElement.classList.add("pulse");
 
-      // 🔥 reduced pause (main fix)
+      // pause
       setTimeout(eraseLine, 1600);
     }
   }
@@ -105,8 +113,6 @@ if (typeElement) {
     if (typeElement.textContent.length > 0) {
 
       typeElement.textContent = typeElement.textContent.slice(0, -1);
-
-      // slightly faster erase
       setTimeout(eraseLine, 15);
 
     } else {
