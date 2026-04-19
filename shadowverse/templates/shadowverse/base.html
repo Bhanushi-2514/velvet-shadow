@@ -53,13 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
      🌑 FOUR STORIES — LOOP + HEARTBEAT
   ========================================= */
 
-  /* =========================================
+ 
+/* =========================================
    🌑 FOUR STORIES — FINAL CINEMATIC LOOP
 ========================================= */
 
-const element = document.getElementById("type-text");
+const typeElement = document.getElementById("type-text");
 
-if (element) {
+if (typeElement) {
 
   const lines = [
     "FOUR STORIES. ONE CHOICE.",
@@ -73,12 +74,13 @@ if (element) {
 
   function typeLine() {
     if (charIndex < lines[lineIndex].length) {
-      element.textContent += lines[lineIndex].charAt(charIndex);
+
+      typeElement.textContent += lines[lineIndex].charAt(charIndex);
       charIndex++;
 
       let char = lines[lineIndex].charAt(charIndex - 1);
 
-      // 💡 realistic typing (random slow)
+      // realistic typing speed
       let delay = Math.random() * 80 + 40;
 
       if (char === " ") delay = 120;
@@ -87,27 +89,24 @@ if (element) {
       setTimeout(typeLine, delay);
 
     } else {
-      // 💓 heartbeat start
-      element.classList.add("pulse");
+      // 💓 heartbeat effect
+      typeElement.classList.add("pulse");
 
-      // pause for emotion
       setTimeout(eraseLine, 3000);
     }
   }
 
   function eraseLine() {
 
-    // 💓 heartbeat stop
-    element.classList.remove("pulse");
+    typeElement.classList.remove("pulse");
 
-    if (element.textContent.length > 0) {
-      element.textContent = element.textContent.slice(0, -1);
+    if (typeElement.textContent.length > 0) {
 
-      // faster erase
+      typeElement.textContent = typeElement.textContent.slice(0, -1);
       setTimeout(eraseLine, 20);
 
     } else {
-      // next line
+
       lineIndex = (lineIndex + 1) % lines.length;
       charIndex = 0;
 
@@ -115,8 +114,36 @@ if (element) {
     }
   }
 
-  // start delay (cinematic entry)
+  // start delay
   setTimeout(typeLine, 800);
+}
+
+
+/* =========================================
+   🌑 SCROLL REVEAL (FIXED VARIABLE)
+========================================= */
+
+const storyLines = document.querySelectorAll(".story-line");
+
+if (storyLines.length > 0) {
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        entry.target.classList.add("active");
+
+      }
+
+    });
+
+  }, { threshold: 0.4 });
+
+  storyLines.forEach((line) => observer.observe(line));
 }
 
   /* =========================================
