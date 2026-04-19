@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
    🌑 FOUR STORIES — FINAL CINEMATIC LOOP
 ========================================= */
 
+
 const typeElement = document.getElementById("type-text");
 
 if (typeElement) {
@@ -80,19 +81,20 @@ if (typeElement) {
 
       let char = lines[lineIndex].charAt(charIndex - 1);
 
-      // realistic typing speed
-      let delay = Math.random() * 80 + 40;
+      // slightly faster typing for live
+      let delay = Math.random() * 60 + 30;
 
-      if (char === " ") delay = 120;
-      if (char === ".") delay = 300;
+      if (char === " ") delay = 100;
+      if (char === ".") delay = 220;
 
       setTimeout(typeLine, delay);
 
     } else {
-      // 💓 heartbeat effect
+
       typeElement.classList.add("pulse");
 
-      setTimeout(eraseLine, 3000);
+      // 🔥 reduced pause (main fix)
+      setTimeout(eraseLine, 1600);
     }
   }
 
@@ -103,21 +105,21 @@ if (typeElement) {
     if (typeElement.textContent.length > 0) {
 
       typeElement.textContent = typeElement.textContent.slice(0, -1);
-      setTimeout(eraseLine, 20);
+
+      // slightly faster erase
+      setTimeout(eraseLine, 15);
 
     } else {
 
       lineIndex = (lineIndex + 1) % lines.length;
       charIndex = 0;
 
-      setTimeout(typeLine, 600);
+      setTimeout(typeLine, 400);
     }
   }
 
-  // start delay
-  setTimeout(typeLine, 800);
+  setTimeout(typeLine, 600);
 }
-
 
 /* =========================================
    🌑 SCROLL REVEAL (FIXED VARIABLE)
