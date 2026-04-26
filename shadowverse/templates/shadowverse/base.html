@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Velvet Shadow</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&display=swap"
@@ -26,6 +30,11 @@
         <a href="#">Tropes</a>
         <a href="#">Analysis</a>
         <a href="#">Contact</a>
+
+        <!-- 🔊 Sound Icon -->
+        <span id="sound-toggle" style="margin-left: 15px; cursor: pointer">
+          <i id="sound-icon" class="fa-solid fa-volume-xmark"></i>
+        </span>
       </nav>
     </header>
 
@@ -46,280 +55,265 @@
       </div>
     </footer>
 
-   <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-   /* =========================================
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        /* =========================================
      🌑 FOUR STORIES — LOOP + HEARTBEAT
   ========================================= */
 
- 
-/* =========================================
+        /* =========================================
    🌑 FOUR STORIES — FINAL CINEMATIC LOOP
 ========================================= */
 
+        const typeElement = document.getElementById("type-text");
 
-const typeElement = document.getElementById("type-text");
+        // 🔥 detect live (Render) vs local
+        const isLive = window.location.hostname.includes("onrender.com");
 
-// 🔥 detect live (Render) vs local
-const isLive = window.location.hostname.includes("onrender.com");
+        if (!isLive && typeElement) {
+          // 🔥 clear static text for typing
+          typeElement.textContent = "";
 
-if (!isLive && typeElement) {
+          const lines = [
+            "FOUR STORIES. ONE CHOICE.",
+            "Har kahani mein ek sach chhupa hai...",
+            "Kuch ishq mehfooz nahi hote...",
+            "Aur kuch raaz kabhi kehne ke liye nahi hote...",
+          ];
 
-  // 🔥 clear static text for typing
-  typeElement.textContent = "";
+          let lineIndex = 0;
+          let charIndex = 0;
 
+          function typeLine() {
+            if (charIndex < lines[lineIndex].length) {
+              typeElement.textContent += lines[lineIndex].charAt(charIndex);
+              charIndex++;
 
-  const lines = [
-    "FOUR STORIES. ONE CHOICE.",
-    "Har kahani mein ek sach chhupa hai...",
-    "Kuch ishq mehfooz nahi hote...",
-    "Aur kuch raaz kabhi kehne ke liye nahi hote..."
-  ];
+              let char = lines[lineIndex].charAt(charIndex - 1);
 
-  let lineIndex = 0;
-  let charIndex = 0;
+              // smooth typing
+              let delay = Math.random() * 60 + 30;
 
-  function typeLine() {
-    if (charIndex < lines[lineIndex].length) {
+              if (char === " ") delay = 100;
+              if (char === ".") delay = 220;
 
-      typeElement.textContent += lines[lineIndex].charAt(charIndex);
-      charIndex++;
+              setTimeout(typeLine, delay);
+            } else {
+              // 💓 heartbeat
+              typeElement.classList.add("pulse");
 
-      let char = lines[lineIndex].charAt(charIndex - 1);
+              // pause
+              setTimeout(eraseLine, 1600);
+            }
+          }
 
-      // smooth typing
-      let delay = Math.random() * 60 + 30;
+          function eraseLine() {
+            typeElement.classList.remove("pulse");
 
-      if (char === " ") delay = 100;
-      if (char === ".") delay = 220;
+            if (typeElement.textContent.length > 0) {
+              typeElement.textContent = typeElement.textContent.slice(0, -1);
+              setTimeout(eraseLine, 15);
+            } else {
+              lineIndex = (lineIndex + 1) % lines.length;
+              charIndex = 0;
 
-      setTimeout(typeLine, delay);
+              setTimeout(typeLine, 400);
+            }
+          }
 
-    } else {
+          setTimeout(typeLine, 600);
+        }
 
-      // 💓 heartbeat
-      typeElement.classList.add("pulse");
-
-      // pause
-      setTimeout(eraseLine, 1600);
-    }
-  }
-
-  function eraseLine() {
-
-    typeElement.classList.remove("pulse");
-
-    if (typeElement.textContent.length > 0) {
-
-      typeElement.textContent = typeElement.textContent.slice(0, -1);
-      setTimeout(eraseLine, 15);
-
-    } else {
-
-      lineIndex = (lineIndex + 1) % lines.length;
-      charIndex = 0;
-
-      setTimeout(typeLine, 400);
-    }
-  }
-
-  setTimeout(typeLine, 600);
-}
-
-/* =========================================
+        /* =========================================
    🌑 SCROLL REVEAL (FIXED VARIABLE)
 ========================================= */
 
-const storyLines = document.querySelectorAll(".story-line");
+        const storyLines = document.querySelectorAll(".story-line");
 
-if (storyLines.length > 0) {
+        if (storyLines.length > 0) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.style.opacity = "1";
+                  entry.target.style.transform = "translateY(0)";
+                  entry.target.classList.add("active");
+                }
+              });
+            },
+            { threshold: 0.4 },
+          );
 
-  const observer = new IntersectionObserver((entries) => {
+          storyLines.forEach((line) => observer.observe(line));
+        }
 
-    entries.forEach((entry) => {
-
-      if (entry.isIntersecting) {
-
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-        entry.target.classList.add("active");
-
-      }
-
-    });
-
-  }, { threshold: 0.4 });
-
-  storyLines.forEach((line) => observer.observe(line));
-}
-
-  /* =========================================
+        /* =========================================
      INTRO FADE + STORY ENTRANCE
   ========================================= */
 
-  const overlay = document.getElementById("storyIntro");
-  const enterBtn = document.getElementById("enterStoryBtn");
-  const storyWrapper = document.querySelector(".story-wrapper");
+        const overlay = document.getElementById("storyIntro");
+        const enterBtn = document.getElementById("enterStoryBtn");
+        const storyWrapper = document.querySelector(".story-wrapper");
 
-  if (overlay && enterBtn) {
-    document.body.style.overflow = "hidden";
+        if (overlay && enterBtn) {
+          document.body.style.overflow = "hidden";
 
-    enterBtn.addEventListener("click", function () {
-      overlay.style.opacity = "0";
+          enterBtn.addEventListener("click", function () {
+            overlay.style.opacity = "0";
 
-      setTimeout(() => {
-        overlay.style.display = "none";
-        document.body.style.overflow = "auto";
+            setTimeout(() => {
+              overlay.style.display = "none";
+              document.body.style.overflow = "auto";
 
-        if (storyWrapper) {
-          storyWrapper.classList.add("story-visible");
+              if (storyWrapper) {
+                storyWrapper.classList.add("story-visible");
+              }
+            }, 1200);
+          });
+        } else {
+          if (storyWrapper) {
+            storyWrapper.classList.add("story-visible");
+          }
         }
-      }, 1200);
-    });
 
-  } else {
-    if (storyWrapper) {
-      storyWrapper.classList.add("story-visible");
-    }
-  }
-
-  /* =========================================
+        /* =========================================
      STORY SCROLL REVEAL
   ========================================= */
 
-  const lines = document.querySelectorAll(".story-line");
+        const lines = document.querySelectorAll(".story-line");
 
-  if (lines.length > 0) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-          entry.target.classList.add("active");
+        if (lines.length > 0) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.style.opacity = "1";
+                  entry.target.style.transform = "translateY(0)";
+                  entry.target.classList.add("active");
+                }
+              });
+            },
+            { threshold: 0.4 },
+          );
+
+          lines.forEach((line) => observer.observe(line));
         }
-      });
-    }, { threshold: 0.4 });
 
-    lines.forEach((line) => observer.observe(line));
-  }
-
-  /* =========================================
+        /* =========================================
      REFLECT MODAL LOGIC
   ========================================= */
 
-  const reflectBtn = document.querySelector(".reflect-btn");
-  const reflectModal = document.getElementById("reflectModal");
-  const reflectCancelBtn = document.getElementById("reflectCancel");
-  const reflectSubmitBtn = document.getElementById("reflectSubmit");
-  const reflectTextArea = document.getElementById("reflectText");
+        const reflectBtn = document.querySelector(".reflect-btn");
+        const reflectModal = document.getElementById("reflectModal");
+        const reflectCancelBtn = document.getElementById("reflectCancel");
+        const reflectSubmitBtn = document.getElementById("reflectSubmit");
+        const reflectTextArea = document.getElementById("reflectText");
 
-  if (reflectBtn && reflectModal) {
+        if (reflectBtn && reflectModal) {
+          reflectBtn.addEventListener("click", function () {
+            reflectModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
 
-    reflectBtn.addEventListener("click", function () {
-      reflectModal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
+          if (reflectCancelBtn) {
+            reflectCancelBtn.addEventListener("click", function () {
+              reflectModal.classList.remove("active");
+              document.body.style.overflow = "auto";
+            });
+          }
 
-    if (reflectCancelBtn) {
-      reflectCancelBtn.addEventListener("click", function () {
-        reflectModal.classList.remove("active");
-        document.body.style.overflow = "auto";
-      });
-    }
-
-    if (reflectSubmitBtn) {
-      reflectSubmitBtn.addEventListener("click", function () {
-        const value = reflectTextArea.value.trim();
-        if (value !== "") {
-          localStorage.setItem("velvet_reflection", value);
+          if (reflectSubmitBtn) {
+            reflectSubmitBtn.addEventListener("click", function () {
+              const value = reflectTextArea.value.trim();
+              if (value !== "") {
+                localStorage.setItem("velvet_reflection", value);
+              }
+            });
+          }
         }
-      });
-    }
-  }
 
-  /* =========================================
+        /* =========================================
      MYSTIC POLL LOGIC
   ========================================= */
 
-  const pollOptions = document.querySelectorAll(".mystic-option");
-  const hiddenInput = document.getElementById("selectedTrope");
-  const pollSubmitBtn = document.querySelector(".mystic-submit");
-  const pollSection = document.querySelector(".chamber-poll");
+        const pollOptions = document.querySelectorAll(".mystic-option");
+        const hiddenInput = document.getElementById("selectedTrope");
+        const pollSubmitBtn = document.querySelector(".mystic-submit");
+        const pollSection = document.querySelector(".chamber-poll");
 
-  if (pollOptions.length > 0 && hiddenInput && pollSubmitBtn) {
+        if (pollOptions.length > 0 && hiddenInput && pollSubmitBtn) {
+          pollOptions.forEach((option) => {
+            option.addEventListener("click", function () {
+              pollOptions.forEach((o) => {
+                o.classList.remove("selected");
+                o.classList.add("faded");
+              });
 
-    pollOptions.forEach((option) => {
-      option.addEventListener("click", function () {
+              this.classList.remove("faded");
+              this.classList.add("selected");
 
-        pollOptions.forEach((o) => {
-          o.classList.remove("selected");
-          o.classList.add("faded");
-        });
+              hiddenInput.value = this.dataset.value;
 
-        this.classList.remove("faded");
-        this.classList.add("selected");
+              pollSubmitBtn.classList.add("active");
 
-        hiddenInput.value = this.dataset.value;
+              if (pollSection) {
+                pollSection.classList.add("shimmer-wave");
+                setTimeout(() => {
+                  pollSection.classList.remove("shimmer-wave");
+                }, 1000);
+              }
 
-        pollSubmitBtn.classList.add("active");
+              createSparkle(this);
+            });
+          });
 
-        if (pollSection) {
-          pollSection.classList.add("shimmer-wave");
-          setTimeout(() => {
-            pollSection.classList.remove("shimmer-wave");
-          }, 1000);
+          function createSparkle(element) {
+            for (let i = 0; i < 3; i++) {
+              const sparkle = document.createElement("span");
+              sparkle.classList.add("sparkle");
+              sparkle.style.left = Math.random() * 30 - 15 + "px";
+              element.appendChild(sparkle);
+
+              setTimeout(() => sparkle.remove(), 1000);
+            }
+          }
         }
 
-        createSparkle(this);
-      });
-    });
-
-    function createSparkle(element) {
-      for (let i = 0; i < 3; i++) {
-        const sparkle = document.createElement("span");
-        sparkle.classList.add("sparkle");
-        sparkle.style.left = Math.random() * 30 - 15 + "px";
-        element.appendChild(sparkle);
-
-        setTimeout(() => sparkle.remove(), 1000);
-      }
-    }
-  }
-
-  /* =========================================
+        /* =========================================
      CHAMBER CLOSING REVEAL
   ========================================= */
 
-  const closing = document.querySelector(".chamber-closing");
+        const closing = document.querySelector(".chamber-closing");
 
-  if (closing) {
-    const closingObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          closing.classList.add("visible");
+        if (closing) {
+          const closingObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  closing.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.4 },
+          );
+
+          closingObserver.observe(closing);
         }
-      });
-    }, { threshold: 0.4 });
 
-    closingObserver.observe(closing);
-  }
-
-  /* =========================================
+        /* =========================================
      SOUND (SAFE)
   ========================================= */
 
-  const velvetSound = document.getElementById("velvetSound");
-  const notedText = document.querySelector(".mystic-noted");
+        const velvetSound = document.getElementById("velvetSound");
+        const notedText = document.querySelector(".mystic-noted");
 
-  if (velvetSound && notedText) {
-    setTimeout(() => {
-      velvetSound.volume = 0.5;
-      velvetSound.play().catch(() => {});
-    }, 400);
-  }
-
-});
-</script>
-</body>
+        if (velvetSound && notedText) {
+          setTimeout(() => {
+            velvetSound.volume = 0.5;
+            velvetSound.play().catch(() => {});
+          }, 400);
+        }
+      });
+    </script>
+  </body>
 </html>

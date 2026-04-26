@@ -49,6 +49,20 @@ Some scars don’t fade.
 
 ---
 
+🎧 Sound Experience
+
+Velvet Shadow uses sound carefully — not to distract, but to deepen the feeling.
+
+🔇 Default silent mode (no autoplay)
+🔊 User-controlled sound toggle
+📖 Soft page-flip feedback on interaction
+🎹 Low-volume ambient piano background
+🌑 Context-based sound (Shadow Chamber only)
+
+Sound is not always heard… sometimes it is simply felt.
+
+---
+
 ## 🛠 Tech Stack
 
 - Python  
@@ -61,19 +75,105 @@ Some scars don’t fade.
 ---
 
 ```
-## 📂 Project Structure
-velvet-shadow/
+📂 Project Structure
+VelvetShadow/
 │
-├── VelvetShadow/        # Django project settings
-├── shadowverse/         # Main app (views, models, templates)
-│   ├── models.py        # Reflection & chamber logic
-│   ├── views.py         # Page rendering & poll handling
-│   ├── templates/       # Home, Story, Chamber pages
-│   └── static/          # CSS, images, audio files
+├── VelvetShadow/              # Project settings (settings.py, urls.py)
 │
-├── assets/              # GitHub preview screenshots
+├── shadowverse/               # Main application
+│   ├── migrations/
+│   ├── models.py              # Reflection & chamber logic
+│   ├── views.py               # Page rendering & interaction logic
+│   ├── urls.py
+│
+│   ├── templates/
+│   │   └── shadowverse/
+│   │       ├── base.html
+│   │       ├── index.html
+│   │       ├── story.html
+│   │       └── shadow_chamber.html
+│
+│   ├── static/
+│   │   └── shadowverse/
+│   │       ├── css/
+│   │       │   └── style.css
+│   │       ├── images/
+│   │       │   └── background.jpg
+│   │       └── audio/
+│   │           ├── piano_bg_music.mp3
+│   │           ├── page_flip.wav
+│   │           └── velvet_end.mp3
+│
+├── assets/                   # GitHub preview screenshots
+│   ├── home.png
+│   ├── story.png
+│   └── chamber.png
+│
+├── staticfiles/              # Collected static files (production)
 ├── manage.py
 └── README.md
-```
+'''
+---
+⚙️ Run Locally
+You can run Velvet Shadow easily on your system.
+---
 
+'''
+1️⃣ Clone the repository
+git clone https://github.com/your-username/velvet-shadow.git
+cd velvet-shadow
+'''
+
+'''
+2️⃣ Create virtual environment (optional)
+python -m venv venv
+venv\Scripts\activate
+'''
+
+'''
+3️⃣ Install dependencies
+pip install django whitenoise
+
+4️⃣ Apply migrations
+python manage.py migrate
+
+5️⃣ Collect static files (important)
+python manage.py collectstatic
+
+Type yes when prompted.
+'''
+
+'''
+6️⃣ Run the server
+python manage.py runserver
+'''
+
+---
+💸 Usage
+✅ Completely free to use
+💻 Works on any laptop or PC
+🔧 Fully customizable
+
+No paid tools or services are required.
+---
+
+---
+
+📱 Future Improvements
+Mobile & tablet responsiveness
+Persistent sound preference (remember user choice)
+Enhanced audio transitions
+More immersive UI interactions
+---
+
+---
+💭 Final Note
+
+Velvet Shadow is not built to be fast.
+It is built to be felt.
+
+Some users will scroll.
+Some will pause.
+And a few… will stay.
+---
 
